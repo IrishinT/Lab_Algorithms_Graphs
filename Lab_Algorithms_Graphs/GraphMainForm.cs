@@ -1,8 +1,8 @@
 namespace Lab_Algorithms_Graphs
 {
-    public partial class Form1 : Form
+    public partial class GraphMainForm : Form
     {
-        public Form1()
+        public GraphMainForm()
         {
             InitializeComponent();
         }
