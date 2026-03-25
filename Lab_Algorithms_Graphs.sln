@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36511.14 d17.14
+VisualStudioVersion = 17.14.36511.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_Algorithms_Graphs", "Lab_Algorithms_Graphs\Lab_Algorithms_Graphs.csproj", "{62E19AF3-E946-4F26-A290-8AC151A67E67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_Algorithms_Graphs.Models", "Lab_Algorithms_Graphs.Models\Lab_Algorithms_Graphs.Models.csproj", "{2070554D-CD8A-4CAA-AA38-F3F39CA27582}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_Algorithms_Graphs.Service", "Lab_Algorithms_Graphs.Models.Service\Lab_Algorithms_Graphs.Service.csproj", "{A5AB3223-1C49-4F01-897A-1878282931FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{62E19AF3-E946-4F26-A290-8AC151A67E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62E19AF3-E946-4F26-A290-8AC151A67E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62E19AF3-E946-4F26-A290-8AC151A67E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2070554D-CD8A-4CAA-AA38-F3F39CA27582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2070554D-CD8A-4CAA-AA38-F3F39CA27582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2070554D-CD8A-4CAA-AA38-F3F39CA27582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2070554D-CD8A-4CAA-AA38-F3F39CA27582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5AB3223-1C49-4F01-897A-1878282931FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5AB3223-1C49-4F01-897A-1878282931FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5AB3223-1C49-4F01-897A-1878282931FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5AB3223-1C49-4F01-897A-1878282931FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
