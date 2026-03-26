@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             pnlControls = new Panel();
+            lblStatus = new Label();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            btnReachable = new Button();
+            btnComponents = new Button();
+            cmbTo = new ComboBox();
+            lblTo = new Label();
+            cmbFrom = new ComboBox();
+            lblFrom = new Label();
             lblAnalysis = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             btnBFS = new Button();
@@ -39,25 +47,19 @@
             pnlLoadButtons = new FlowLayoutPanel();
             btnBrowse = new Button();
             btnLoad = new Button();
-            textBox1 = new TextBox();
+            txtFilePath = new TextBox();
             lblTitle = new Label();
             rtbOutput = new RichTextBox();
-            lblFrom = new Label();
-            cmbFrom = new ComboBox();
-            cmbTo = new ComboBox();
-            lblTo = new Label();
-            flowLayoutPanel2 = new FlowLayoutPanel();
-            btnReachable = new Button();
-            btnComponents = new Button();
             pnlControls.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             pnlLoadButtons.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // pnlControls
             // 
             pnlControls.BackColor = Color.LightGray;
+            pnlControls.Controls.Add(lblStatus);
             pnlControls.Controls.Add(flowLayoutPanel2);
             pnlControls.Controls.Add(cmbTo);
             pnlControls.Controls.Add(lblTo);
@@ -69,13 +71,94 @@
             pnlControls.Controls.Add(lblStart);
             pnlControls.Controls.Add(lblBFS);
             pnlControls.Controls.Add(pnlLoadButtons);
-            pnlControls.Controls.Add(textBox1);
+            pnlControls.Controls.Add(txtFilePath);
             pnlControls.Controls.Add(lblTitle);
             pnlControls.Dock = DockStyle.Left;
             pnlControls.Location = new Point(0, 0);
             pnlControls.Name = "pnlControls";
             pnlControls.Size = new Size(250, 553);
             pnlControls.TabIndex = 0;
+            // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Dock = DockStyle.Bottom;
+            lblStatus.Location = new Point(0, 527);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Padding = new Padding(3);
+            lblStatus.Size = new Size(147, 26);
+            lblStatus.TabIndex = 13;
+            lblStatus.Text = "Статус: Ожидание...";
+            // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.Controls.Add(btnReachable);
+            flowLayoutPanel2.Controls.Add(btnComponents);
+            flowLayoutPanel2.Dock = DockStyle.Top;
+            flowLayoutPanel2.Location = new Point(0, 439);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(250, 71);
+            flowLayoutPanel2.TabIndex = 12;
+            // 
+            // btnReachable
+            // 
+            btnReachable.BackColor = Color.Aquamarine;
+            btnReachable.Location = new Point(3, 3);
+            btnReachable.Name = "btnReachable";
+            btnReachable.Size = new Size(94, 68);
+            btnReachable.TabIndex = 0;
+            btnReachable.Text = "Проверить путь";
+            btnReachable.UseVisualStyleBackColor = false;
+            // 
+            // btnComponents
+            // 
+            btnComponents.BackColor = Color.Aquamarine;
+            btnComponents.Location = new Point(103, 3);
+            btnComponents.Name = "btnComponents";
+            btnComponents.Size = new Size(113, 68);
+            btnComponents.TabIndex = 1;
+            btnComponents.Text = "Компоненты";
+            btnComponents.UseVisualStyleBackColor = false;
+            // 
+            // cmbTo
+            // 
+            cmbTo.Dock = DockStyle.Top;
+            cmbTo.FormattingEnabled = true;
+            cmbTo.Location = new Point(0, 411);
+            cmbTo.Name = "cmbTo";
+            cmbTo.Size = new Size(250, 28);
+            cmbTo.TabIndex = 11;
+            // 
+            // lblTo
+            // 
+            lblTo.AutoSize = true;
+            lblTo.Dock = DockStyle.Top;
+            lblTo.Location = new Point(0, 385);
+            lblTo.Name = "lblTo";
+            lblTo.Padding = new Padding(3);
+            lblTo.Size = new Size(37, 26);
+            lblTo.TabIndex = 10;
+            lblTo.Text = "До:";
+            // 
+            // cmbFrom
+            // 
+            cmbFrom.Dock = DockStyle.Top;
+            cmbFrom.FormattingEnabled = true;
+            cmbFrom.Location = new Point(0, 357);
+            cmbFrom.Name = "cmbFrom";
+            cmbFrom.Size = new Size(250, 28);
+            cmbFrom.TabIndex = 9;
+            // 
+            // lblFrom
+            // 
+            lblFrom.AutoSize = true;
+            lblFrom.Dock = DockStyle.Top;
+            lblFrom.Location = new Point(0, 331);
+            lblFrom.Name = "lblFrom";
+            lblFrom.Padding = new Padding(3);
+            lblFrom.Size = new Size(35, 26);
+            lblFrom.TabIndex = 8;
+            lblFrom.Text = "От:";
             // 
             // lblAnalysis
             // 
@@ -179,16 +262,16 @@
             btnLoad.Text = "Загрузить";
             btnLoad.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtFilePath
             // 
-            textBox1.Dock = DockStyle.Top;
-            textBox1.Location = new Point(0, 45);
-            textBox1.Margin = new Padding(10);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Путь к файлу .txt";
-            textBox1.Size = new Size(250, 27);
-            textBox1.TabIndex = 1;
-            textBox1.Text = "data/students_network.txt";
+            txtFilePath.Dock = DockStyle.Top;
+            txtFilePath.Location = new Point(0, 45);
+            txtFilePath.Margin = new Padding(10);
+            txtFilePath.Name = "txtFilePath";
+            txtFilePath.PlaceholderText = "Путь к файлу .txt";
+            txtFilePath.Size = new Size(250, 27);
+            txtFilePath.TabIndex = 1;
+            txtFilePath.Text = "data/students_network.txt";
             // 
             // lblTitle
             // 
@@ -213,76 +296,6 @@
             rtbOutput.TabIndex = 1;
             rtbOutput.Text = "";
             // 
-            // lblFrom
-            // 
-            lblFrom.AutoSize = true;
-            lblFrom.Dock = DockStyle.Top;
-            lblFrom.Location = new Point(0, 331);
-            lblFrom.Name = "lblFrom";
-            lblFrom.Padding = new Padding(3);
-            lblFrom.Size = new Size(35, 26);
-            lblFrom.TabIndex = 8;
-            lblFrom.Text = "От:";
-            // 
-            // cmbFrom
-            // 
-            cmbFrom.Dock = DockStyle.Top;
-            cmbFrom.FormattingEnabled = true;
-            cmbFrom.Location = new Point(0, 357);
-            cmbFrom.Name = "cmbFrom";
-            cmbFrom.Size = new Size(250, 28);
-            cmbFrom.TabIndex = 9;
-            // 
-            // cmbTo
-            // 
-            cmbTo.Dock = DockStyle.Top;
-            cmbTo.FormattingEnabled = true;
-            cmbTo.Location = new Point(0, 411);
-            cmbTo.Name = "cmbTo";
-            cmbTo.Size = new Size(250, 28);
-            cmbTo.TabIndex = 11;
-            // 
-            // lblTo
-            // 
-            lblTo.AutoSize = true;
-            lblTo.Dock = DockStyle.Top;
-            lblTo.Location = new Point(0, 385);
-            lblTo.Name = "lblTo";
-            lblTo.Padding = new Padding(3);
-            lblTo.Size = new Size(37, 26);
-            lblTo.TabIndex = 10;
-            lblTo.Text = "До:";
-            // 
-            // flowLayoutPanel2
-            // 
-            flowLayoutPanel2.Controls.Add(btnReachable);
-            flowLayoutPanel2.Controls.Add(btnComponents);
-            flowLayoutPanel2.Dock = DockStyle.Top;
-            flowLayoutPanel2.Location = new Point(0, 439);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(250, 71);
-            flowLayoutPanel2.TabIndex = 12;
-            // 
-            // btnReachable
-            // 
-            btnReachable.BackColor = Color.Aquamarine;
-            btnReachable.Location = new Point(3, 3);
-            btnReachable.Name = "btnReachable";
-            btnReachable.Size = new Size(94, 68);
-            btnReachable.TabIndex = 0;
-            btnReachable.Text = "Проверить путь";
-            btnReachable.UseVisualStyleBackColor = false;
-            // 
-            // btnComponents
-            // 
-            btnComponents.BackColor = Color.Aquamarine;
-            btnComponents.Location = new Point(103, 3);
-            btnComponents.Name = "btnComponents";
-            btnComponents.Size = new Size(113, 68);
-            btnComponents.TabIndex = 1;
-            btnComponents.Text = "Компоненты";
-            btnComponents.UseVisualStyleBackColor = false;
-            // 
             // GraphMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -294,9 +307,9 @@
             Text = "Социальная сеть студентов";
             pnlControls.ResumeLayout(false);
             pnlControls.PerformLayout();
+            flowLayoutPanel2.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
             pnlLoadButtons.ResumeLayout(false);
-            flowLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -304,7 +317,7 @@
 
         private Panel pnlControls;
         private RichTextBox rtbOutput;
-        private TextBox textBox1;
+        private TextBox txtFilePath;
         private Label lblTitle;
         private FlowLayoutPanel pnlLoadButtons;
         private Button btnBrowse;
@@ -323,5 +336,6 @@
         private Label lblTo;
         private ComboBox cmbFrom;
         private Label lblFrom;
+        private Label lblStatus;
     }
 }

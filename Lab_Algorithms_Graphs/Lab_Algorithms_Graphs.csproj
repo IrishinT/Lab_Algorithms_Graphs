@@ -8,4 +8,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Lab_Algorithms_Graphs.Models.Service\Lab_Algorithms_Graphs.Service.csproj" />
+    <ProjectReference Include="..\Lab_Algorithms_Graphs.Models\Lab_Algorithms_Graphs.Models.csproj" />
+  </ItemGroup>
+
 </Project>
