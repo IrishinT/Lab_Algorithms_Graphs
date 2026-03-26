@@ -1,5 +1,6 @@
 ﻿using Lab_Algorithms_Graphs.Models;
 using Lab_Algorithms_Graphs.Service;
+using System.Net;
 
 namespace Lab_Algorithms_Graphs
 {
@@ -13,6 +14,8 @@ namespace Lab_Algorithms_Graphs
 
             btnLoad.Click += btnLoad_Click;
             btnBrowse.Click += btnBrowse_Click;
+            btnBFS.Click += btnBFS_Click;
+            btnDFS.Click += btnDFS_Click;
         }
 
         private void btnLoad_Click(object? sender, EventArgs e)
@@ -65,6 +68,42 @@ namespace Lab_Algorithms_Graphs
             };
             if (dialog.ShowDialog() == DialogResult.OK)
                 txtFilePath.Text = dialog.FileName;
+        }
+
+        private void btnBFS_Click(object? sender, EventArgs e)
+        {
+            if (_graph == null || cmbStart.SelectedItem is not Vertex start)
+            {
+                MessageBox.Show("Загрузите граф и выберите стартовую вершину");
+                return;
+            }
+
+            var order = BFS_Algorithm.Traverse(_graph, start);
+
+            rtbOutput.Clear();
+            rtbOutput.AppendText($"[BFS] Обход от студента: {start}\n");
+            rtbOutput.AppendText($"Порядок посещения:\n");
+            rtbOutput.AppendText(string.Join(" -> ", order) + "\n");
+            rtbOutput.AppendText($"\nВсего вершин: {order.Count}\n");
+            rtbOutput.ScrollToCaret();
+        }
+
+        private void btnDFS_Click(object? sender, EventArgs e)
+        {
+            if (_graph == null || cmbStart.SelectedItem is not Vertex start)
+            {
+                MessageBox.Show("Загрузите граф и выберите стартовую вершину");
+                return;
+            }
+
+            var order = DFS_Algorithm.Traverse(_graph, start);
+
+            rtbOutput.Clear();
+            rtbOutput.AppendText($"[DFS] Обход от студента: {start}\n");
+            rtbOutput.AppendText($"Порядок посещения:\n");
+            rtbOutput.AppendText(string.Join(" -> ", order) + "\n");
+            rtbOutput.AppendText($"\nВсего вершин: {order.Count}\n");
+            rtbOutput.ScrollToCaret();
         }
 
     }
