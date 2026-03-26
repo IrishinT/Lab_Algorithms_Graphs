@@ -16,6 +16,8 @@ namespace Lab_Algorithms_Graphs
             btnBrowse.Click += btnBrowse_Click;
             btnBFS.Click += btnBFS_Click;
             btnDFS.Click += btnDFS_Click;
+            btnReachable.Click += btnReachable_Click;
+            btnComponents.Click += btnComponents_Click;
         }
 
         private void btnLoad_Click(object? sender, EventArgs e)
@@ -103,6 +105,70 @@ namespace Lab_Algorithms_Graphs
             rtbOutput.AppendText($"Порядок посещения:\n");
             rtbOutput.AppendText(string.Join(" -> ", order) + "\n");
             rtbOutput.AppendText($"\nВсего вершин: {order.Count}\n");
+            rtbOutput.ScrollToCaret();
+        }
+
+        private void btnReachable_Click(object? sender, EventArgs e)
+        {
+            if (_graph == null ||
+                cmbFrom.SelectedItem is not Vertex from ||
+                cmbTo.SelectedItem is not Vertex to)
+            {
+                MessageBox.Show("Загрузите граф и выберите две вершины");
+                return;
+            }
+
+            var reachable = BFS_Algorithm.IsReachable(_graph, from, to);
+            var path = BFS_Algorithm.FindShortestPath(_graph, from, to);
+
+            rtbOutput.Clear();
+            rtbOutput.AppendText($"[Достижимость] {from} → {to}\n\n");
+
+            if (reachable)
+            {
+                rtbOutput.AppendText($"✓ Вершина {to} ДОСТИЖИМА из {from}\n");
+                if (path != null)
+                {
+                    rtbOutput.AppendText($"\nКратчайший путь ({path.Count - 1} рукопожатий):\n");
+                    rtbOutput.AppendText(string.Join(" → ", path) + "\n");
+                }
+            }
+            else
+            {
+                rtbOutput.AppendText($"✗ Вершина {to} НЕ достижима из {from}\n");
+            }
+            rtbOutput.ScrollToCaret();
+        }
+
+        private void btnComponents_Click(object? sender, EventArgs e)
+        {
+            if (_graph == null)
+            {
+                MessageBox.Show("Загрузите граф");
+                return;
+            }
+
+            var components = Connectivity.FindConnectedComponents(_graph);
+
+            rtbOutput.Clear();
+            rtbOutput.AppendText($"[Компоненты связности]\n\n");
+
+            if (components.Count == 1)
+            {
+                rtbOutput.AppendText($"✓ Граф СВЯЗНЫЙ\n");
+                rtbOutput.AppendText($"Все {components[0].Count} студентов входят в одну группу знакомств\n");
+            }
+            else
+            {
+                rtbOutput.AppendText($"✗ Граф НЕСВЯЗНЫЙ\n");
+                rtbOutput.AppendText($"Найдено компонент: {components.Count}\n\n");
+
+                for (int i = 0; i < components.Count; i++)
+                {
+                    rtbOutput.AppendText($"Компонента {i + 1} ({components[i].Count} студ.):\n");
+                    rtbOutput.AppendText(string.Join(", ", components[i]) + "\n\n");
+                }
+            }
             rtbOutput.ScrollToCaret();
         }
 
