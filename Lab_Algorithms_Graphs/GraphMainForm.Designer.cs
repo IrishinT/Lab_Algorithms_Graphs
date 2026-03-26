@@ -28,18 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
+            pnlControls = new Panel();
+            rtbOutput = new RichTextBox();
             SuspendLayout();
+            // 
+            // pnlControls
+            // 
+            pnlControls.BackColor = Color.LightGray;
+            pnlControls.Dock = DockStyle.Left;
+            pnlControls.Location = new Point(0, 0);
+            pnlControls.Name = "pnlControls";
+            pnlControls.Size = new Size(250, 450);
+            pnlControls.TabIndex = 0;
+            // 
+            // rtbOutput
+            // 
+            rtbOutput.Dock = DockStyle.Fill;
+            rtbOutput.Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            rtbOutput.Location = new Point(250, 0);
+            rtbOutput.Name = "rtbOutput";
+            rtbOutput.Size = new Size(550, 450);
+            rtbOutput.TabIndex = 1;
+            rtbOutput.Text = "";
             // 
             // GraphMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(rtbOutput);
+            Controls.Add(pnlControls);
             Name = "GraphMainForm";
-            Text = "Графы";
+            Text = "Социальная сеть студентов";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Panel pnlControls;
+        private RichTextBox rtbOutput;
     }
 }
