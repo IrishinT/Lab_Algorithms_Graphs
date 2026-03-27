@@ -6,6 +6,7 @@ namespace Lab_Algorithms_Graphs
 {
     public partial class GraphMainForm : Form
     {
+        // Поле для хранения текущего графа (null, если ещё не загружен)
         private Graph? _graph;
 
         public GraphMainForm()
@@ -20,6 +21,9 @@ namespace Lab_Algorithms_Graphs
             btnComponents.Click += btnComponents_Click;
         }
 
+        /// <summary>
+        ///  Обработчик кнопки "Загрузить граф".
+        /// </summary>
         private void btnLoad_Click(object? sender, EventArgs e)
         {
             try
@@ -43,7 +47,7 @@ namespace Lab_Algorithms_Graphs
                 if (cmbFrom.Items.Count > 0) cmbFrom.SelectedIndex = 0;
                 if (cmbTo.Items.Count > 0) cmbTo.SelectedIndex = 1;
 
-                lblStatus.Text = $"✓ Загружено: {_graph.VertexCount} вершин, {_graph.EdgeCount} рёбер";
+                lblStatus.Text = $"Загружено: {_graph.VertexCount} вершин, {_graph.EdgeCount} рёбер";
                 lblStatus.BackColor = Color.FromArgb(200, 255, 200);
 
                 rtbOutput.Clear();
@@ -54,7 +58,7 @@ namespace Lab_Algorithms_Graphs
             }
             catch (Exception ex)
             {
-                lblStatus.Text = "✗ Ошибка загрузки";
+                lblStatus.Text = "Ошибка загрузки!";
                 lblStatus.BackColor = Color.FromArgb(255, 200, 200);
                 MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка загрузки",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -83,7 +87,7 @@ namespace Lab_Algorithms_Graphs
             var order = BFS_Algorithm.Traverse(_graph, start);
 
             rtbOutput.Clear();
-            rtbOutput.AppendText($"[BFS] Обход от студента: {start}\n");
+            rtbOutput.AppendText($"[BFS] Обход от объекта: {start}\n");
             rtbOutput.AppendText($"Порядок посещения:\n");
             rtbOutput.AppendText(string.Join(" -> ", order) + "\n");
             rtbOutput.AppendText($"\nВсего вершин: {order.Count}\n");
@@ -101,7 +105,7 @@ namespace Lab_Algorithms_Graphs
             var order = DFS_Algorithm.Traverse(_graph, start);
 
             rtbOutput.Clear();
-            rtbOutput.AppendText($"[DFS] Обход от студента: {start}\n");
+            rtbOutput.AppendText($"[DFS] Обход от объекта: {start}\n");
             rtbOutput.AppendText($"Порядок посещения:\n");
             rtbOutput.AppendText(string.Join(" -> ", order) + "\n");
             rtbOutput.AppendText($"\nВсего вершин: {order.Count}\n");
@@ -122,7 +126,7 @@ namespace Lab_Algorithms_Graphs
             var path = BFS_Algorithm.FindShortestPath(_graph, from, to);
 
             rtbOutput.Clear();
-            rtbOutput.AppendText($"[Достижимость] {from} → {to}\n\n");
+            rtbOutput.AppendText($"[Достижимость] {from} -> {to}\n\n");
 
             if (reachable)
             {
@@ -155,17 +159,17 @@ namespace Lab_Algorithms_Graphs
 
             if (components.Count == 1)
             {
-                rtbOutput.AppendText($"✓ Граф СВЯЗНЫЙ\n");
-                rtbOutput.AppendText($"Все {components[0].Count} студентов входят в одну группу знакомств\n");
+                rtbOutput.AppendText($"Граф СВЯЗНЫЙ\n");
+                rtbOutput.AppendText($"Все {components[0].Count} объектов входят в одну группу знакомств\n");
             }
             else
             {
-                rtbOutput.AppendText($"✗ Граф НЕСВЯЗНЫЙ\n");
+                rtbOutput.AppendText($"Граф НЕСВЯЗНЫЙ\n");
                 rtbOutput.AppendText($"Найдено компонент: {components.Count}\n\n");
 
                 for (int i = 0; i < components.Count; i++)
                 {
-                    rtbOutput.AppendText($"Компонента {i + 1} ({components[i].Count} студ.):\n");
+                    rtbOutput.AppendText($"Компонента {i + 1} ({components[i].Count} объектов.):\n");
                     rtbOutput.AppendText(string.Join(", ", components[i]) + "\n\n");
                 }
             }

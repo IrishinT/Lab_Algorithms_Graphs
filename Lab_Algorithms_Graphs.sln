@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_Algorithms_Graphs.Model
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_Algorithms_Graphs.Service", "Lab_Algorithms_Graphs.Models.Service\Lab_Algorithms_Graphs.Service.csproj", "{A5AB3223-1C49-4F01-897A-1878282931FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_Algorithms_Graphs.Tests", "Lab_Algorithms_Graphs.Tests\Lab_Algorithms_Graphs.Tests.csproj", "{AFBACAE3-1CD9-456D-AB7F-E3E602BD89B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A5AB3223-1C49-4F01-897A-1878282931FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5AB3223-1C49-4F01-897A-1878282931FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5AB3223-1C49-4F01-897A-1878282931FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFBACAE3-1CD9-456D-AB7F-E3E602BD89B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFBACAE3-1CD9-456D-AB7F-E3E602BD89B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFBACAE3-1CD9-456D-AB7F-E3E602BD89B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFBACAE3-1CD9-456D-AB7F-E3E602BD89B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

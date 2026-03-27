@@ -271,7 +271,7 @@
             txtFilePath.PlaceholderText = "Путь к файлу .txt";
             txtFilePath.Size = new Size(250, 27);
             txtFilePath.TabIndex = 1;
-            txtFilePath.Text = "data/students_network.txt";
+            txtFilePath.Text = "data/supply_network.txt";
             // 
             // lblTitle
             // 
@@ -304,7 +304,7 @@
             Controls.Add(rtbOutput);
             Controls.Add(pnlControls);
             Name = "GraphMainForm";
-            Text = "Социальная сеть студентов";
+            Text = "Сеть поставок товаров";
             pnlControls.ResumeLayout(false);
             pnlControls.PerformLayout();
             flowLayoutPanel2.ResumeLayout(false);
