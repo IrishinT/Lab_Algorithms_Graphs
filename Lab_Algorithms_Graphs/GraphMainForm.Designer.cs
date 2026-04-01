@@ -51,10 +51,17 @@
             txtFilePath = new TextBox();
             lblTitle = new Label();
             rtbOutput = new RichTextBox();
+            splitContainerRight = new SplitContainer();
+            dgvDistances = new DataGridView();
             pnlControls.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             pnlLoadButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainerRight).BeginInit();
+            splitContainerRight.Panel1.SuspendLayout();
+            splitContainerRight.Panel2.SuspendLayout();
+            splitContainerRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDistances).BeginInit();
             SuspendLayout();
             // 
             // pnlControls
@@ -301,19 +308,51 @@
             // 
             rtbOutput.Dock = DockStyle.Fill;
             rtbOutput.Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            rtbOutput.Location = new Point(338, 0);
+            rtbOutput.Location = new Point(0, 0);
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = true;
-            rtbOutput.Size = new Size(444, 553);
+            rtbOutput.Size = new Size(444, 276);
             rtbOutput.TabIndex = 1;
             rtbOutput.Text = "";
+            // 
+            // splitContainerRight
+            // 
+            splitContainerRight.Dock = DockStyle.Fill;
+            splitContainerRight.Location = new Point(338, 0);
+            splitContainerRight.Name = "splitContainerRight";
+            splitContainerRight.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainerRight.Panel1
+            // 
+            splitContainerRight.Panel1.Controls.Add(rtbOutput);
+            // 
+            // splitContainerRight.Panel2
+            // 
+            splitContainerRight.Panel2.Controls.Add(dgvDistances);
+            splitContainerRight.Size = new Size(444, 553);
+            splitContainerRight.SplitterDistance = 276;
+            splitContainerRight.TabIndex = 0;
+            // 
+            // dgvDistances
+            // 
+            dgvDistances.AllowUserToAddRows = false;
+            dgvDistances.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDistances.BackgroundColor = Color.White;
+            dgvDistances.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDistances.Dock = DockStyle.Fill;
+            dgvDistances.Location = new Point(0, 0);
+            dgvDistances.Name = "dgvDistances";
+            dgvDistances.ReadOnly = true;
+            dgvDistances.RowHeadersWidth = 51;
+            dgvDistances.Size = new Size(444, 273);
+            dgvDistances.TabIndex = 0;
             // 
             // GraphMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(782, 553);
-            Controls.Add(rtbOutput);
+            Controls.Add(splitContainerRight);
             Controls.Add(pnlControls);
             Name = "GraphMainForm";
             Text = "Сеть поставок товаров";
@@ -322,6 +361,11 @@
             flowLayoutPanel2.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
             pnlLoadButtons.ResumeLayout(false);
+            splitContainerRight.Panel1.ResumeLayout(false);
+            splitContainerRight.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainerRight).EndInit();
+            splitContainerRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvDistances).EndInit();
             ResumeLayout(false);
         }
 
@@ -350,5 +394,7 @@
         private Label lblFrom;
         private Label lblStatus;
         private Button btnDijkstra;
+        private SplitContainer splitContainerRight;
+        private DataGridView dgvDistances;
     }
 }
