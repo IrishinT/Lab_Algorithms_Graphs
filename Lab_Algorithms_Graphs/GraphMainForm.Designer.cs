@@ -33,6 +33,7 @@
             flowLayoutPanel2 = new FlowLayoutPanel();
             btnReachable = new Button();
             btnComponents = new Button();
+            btnDijkstra = new Button();
             cmbTo = new ComboBox();
             lblTo = new Label();
             cmbFrom = new ComboBox();
@@ -76,7 +77,7 @@
             pnlControls.Dock = DockStyle.Left;
             pnlControls.Location = new Point(0, 0);
             pnlControls.Name = "pnlControls";
-            pnlControls.Size = new Size(250, 553);
+            pnlControls.Size = new Size(338, 553);
             pnlControls.TabIndex = 0;
             // 
             // lblStatus
@@ -94,10 +95,11 @@
             // 
             flowLayoutPanel2.Controls.Add(btnReachable);
             flowLayoutPanel2.Controls.Add(btnComponents);
+            flowLayoutPanel2.Controls.Add(btnDijkstra);
             flowLayoutPanel2.Dock = DockStyle.Top;
             flowLayoutPanel2.Location = new Point(0, 439);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(250, 71);
+            flowLayoutPanel2.Size = new Size(338, 71);
             flowLayoutPanel2.TabIndex = 12;
             // 
             // btnReachable
@@ -115,10 +117,20 @@
             btnComponents.BackColor = Color.Aquamarine;
             btnComponents.Location = new Point(103, 3);
             btnComponents.Name = "btnComponents";
-            btnComponents.Size = new Size(113, 68);
+            btnComponents.Size = new Size(108, 68);
             btnComponents.TabIndex = 1;
             btnComponents.Text = "Компоненты";
             btnComponents.UseVisualStyleBackColor = false;
+            // 
+            // btnDijkstra
+            // 
+            btnDijkstra.BackColor = Color.Aquamarine;
+            btnDijkstra.Location = new Point(217, 3);
+            btnDijkstra.Name = "btnDijkstra";
+            btnDijkstra.Size = new Size(108, 68);
+            btnDijkstra.TabIndex = 2;
+            btnDijkstra.Text = "Дейкстра";
+            btnDijkstra.UseVisualStyleBackColor = false;
             // 
             // cmbTo
             // 
@@ -126,7 +138,7 @@
             cmbTo.FormattingEnabled = true;
             cmbTo.Location = new Point(0, 411);
             cmbTo.Name = "cmbTo";
-            cmbTo.Size = new Size(250, 28);
+            cmbTo.Size = new Size(338, 28);
             cmbTo.TabIndex = 11;
             // 
             // lblTo
@@ -146,7 +158,7 @@
             cmbFrom.FormattingEnabled = true;
             cmbFrom.Location = new Point(0, 357);
             cmbFrom.Name = "cmbFrom";
-            cmbFrom.Size = new Size(250, 28);
+            cmbFrom.Size = new Size(338, 28);
             cmbFrom.TabIndex = 9;
             // 
             // lblFrom
@@ -179,7 +191,7 @@
             flowLayoutPanel1.Dock = DockStyle.Top;
             flowLayoutPanel1.Location = new Point(0, 217);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(250, 71);
+            flowLayoutPanel1.Size = new Size(338, 71);
             flowLayoutPanel1.TabIndex = 6;
             // 
             // btnBFS
@@ -208,7 +220,7 @@
             cmbStart.FormattingEnabled = true;
             cmbStart.Location = new Point(0, 189);
             cmbStart.Name = "cmbStart";
-            cmbStart.Size = new Size(250, 28);
+            cmbStart.Size = new Size(338, 28);
             cmbStart.TabIndex = 5;
             // 
             // lblStart
@@ -241,7 +253,7 @@
             pnlLoadButtons.Dock = DockStyle.Top;
             pnlLoadButtons.Location = new Point(0, 72);
             pnlLoadButtons.Name = "pnlLoadButtons";
-            pnlLoadButtons.Size = new Size(250, 48);
+            pnlLoadButtons.Size = new Size(338, 48);
             pnlLoadButtons.TabIndex = 2;
             // 
             // btnBrowse
@@ -269,7 +281,7 @@
             txtFilePath.Margin = new Padding(10);
             txtFilePath.Name = "txtFilePath";
             txtFilePath.PlaceholderText = "Путь к файлу .txt";
-            txtFilePath.Size = new Size(250, 27);
+            txtFilePath.Size = new Size(338, 27);
             txtFilePath.TabIndex = 1;
             txtFilePath.Text = "data/supply_network.txt";
             // 
@@ -289,10 +301,10 @@
             // 
             rtbOutput.Dock = DockStyle.Fill;
             rtbOutput.Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            rtbOutput.Location = new Point(250, 0);
+            rtbOutput.Location = new Point(338, 0);
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = true;
-            rtbOutput.Size = new Size(532, 553);
+            rtbOutput.Size = new Size(444, 553);
             rtbOutput.TabIndex = 1;
             rtbOutput.Text = "";
             // 
@@ -337,5 +349,6 @@
         private ComboBox cmbFrom;
         private Label lblFrom;
         private Label lblStatus;
+        private Button btnDijkstra;
     }
 }

@@ -19,6 +19,7 @@ namespace Lab_Algorithms_Graphs
             btnDFS.Click += btnDFS_Click;
             btnReachable.Click += btnReachable_Click;
             btnComponents.Click += btnComponents_Click;
+            btnDijkstra.Click += btnDijkstra_Click;
         }
 
         /// <summary>
@@ -174,6 +175,28 @@ namespace Lab_Algorithms_Graphs
                 }
             }
             rtbOutput.ScrollToCaret();
+        }
+
+        private void btnDijkstra_Click(object sender, EventArgs e)
+        {
+            if (_graph == null || cmbFrom.SelectedItem is not Vertex from || cmbTo.SelectedItem is not Vertex to) return;
+
+            // Запуск алгоритма
+            var (distances, parents) = Dijkstra_Algorithm.Run(_graph, from);
+
+            rtbOutput.Clear();
+            rtbOutput.AppendText($"[Dijkstra] Поиск пути: {from} -> {to}\n");
+
+            if (distances[to] == double.PositiveInfinity)
+            {
+                rtbOutput.AppendText("Путь не найден.");
+            }
+            else
+            {
+                var path = Dijkstra_Algorithm.GetPath(parents, to);
+                rtbOutput.AppendText($"Кратчайшее расстояние: {distances[to]}\n");
+                rtbOutput.AppendText("Маршрут: " + string.Join(" -> ", path));
+            }
         }
 
     }
