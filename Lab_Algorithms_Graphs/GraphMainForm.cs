@@ -22,6 +22,19 @@ namespace Lab_Algorithms_Graphs
             btnDijkstra.Click += btnDijkstra_Click;
         }
 
+        private void InitDistancesGrid()
+        {
+            dgvDistances.Rows.Clear();
+            dgvDistances.Columns.Clear();
+            dgvDistances.Columns.Add("Target", "Объект назначения");
+            dgvDistances.Columns.Add("Dist", "Мин. Стоимость");
+            dgvDistances.Columns.Add("Path", "Предыдущий узел");
+
+            dgvDistances.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDistances.AllowUserToAddRows = false;
+            dgvDistances.RowHeadersVisible = false;
+        }
+
         /// <summary>
         ///  Обработчик кнопки "Загрузить граф".
         /// </summary>
@@ -30,6 +43,7 @@ namespace Lab_Algorithms_Graphs
             try
             {
                 _graph = GraphFileParser.LoadFromTxt(txtFilePath.Text);
+                InitDistancesGrid();
 
                 // Заполняем ComboBox вершинами
                 cmbStart.Items.Clear();
@@ -179,23 +193,42 @@ namespace Lab_Algorithms_Graphs
 
         private void btnDijkstra_Click(object sender, EventArgs e)
         {
-            if (_graph == null || cmbFrom.SelectedItem is not Vertex from || cmbTo.SelectedItem is not Vertex to) return;
+            if (_graph == null || cmbFrom.SelectedItem is not Vertex from)
+            {
+                MessageBox.Show("Загрузите граф и выберите начальную вершину!");
+                return;
+            }
 
             // Запуск алгоритма
             var (distances, parents) = Dijkstra_Algorithm.Run(_graph, from);
 
-            rtbOutput.Clear();
-            rtbOutput.AppendText($"[Dijkstra] Поиск пути: {from} -> {to}\n");
+            dgvDistances.Rows.Clear();
+            if (dgvDistances.ColumnCount == 0) InitDistancesGrid();
 
-            if (distances[to] == double.PositiveInfinity)
+            foreach (var v in _graph.Vertices.OrderBy(v => v.Label))
             {
-                rtbOutput.AppendText("Путь не найден.");
+                string d = double.IsPositiveInfinity(distances[v]) ? "∞" : distances[v].ToString("F2");
+                string p = parents[v]?.Label ?? "—";
+                dgvDistances.Rows.Add(v.Label, d, p);
             }
-            else
+
+            rtbOutput.Clear();
+            rtbOutput.AppendText($"[Dijkstra] Анализ от узла: {from}\n");
+            rtbOutput.AppendText($"Таблица расстояний до всех объектов обновлена внизу.\n\n");
+
+            if (cmbTo.SelectedItem is Vertex to && !from.Equals(to))
             {
-                var path = Dijkstra_Algorithm.GetPath(parents, to);
-                rtbOutput.AppendText($"Кратчайшее расстояние: {distances[to]}\n");
-                rtbOutput.AppendText("Маршрут: " + string.Join(" -> ", path));
+                rtbOutput.AppendText($"--- Поиск конкретного пути до {to} ---\n");
+                if (double.IsPositiveInfinity(distances[to]))
+                {
+                    rtbOutput.AppendText("❌ Путь недоступен.\n");
+                }
+                else
+                {
+                    var path = Dijkstra_Algorithm.GetPath(parents, to);
+                    rtbOutput.AppendText($"Кратчайшая стоимость: {distances[to]:F2}\n");
+                    rtbOutput.AppendText($"Маршрут: {string.Join(" → ", path)}\n");
+                }
             }
         }
 
