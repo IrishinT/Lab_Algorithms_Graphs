@@ -86,8 +86,14 @@ namespace Lab_Algorithms_Graphs.Service
 
                             // читаем вес (третий параметр)
                             double weight = 1.0;
-                            if (parts.Length >= 3 && double.TryParse(parts[2], out var w))
+                            if (parts.Length >= 3 && double.TryParse(parts[2].Replace(',', '.'),
+                                System.Globalization.NumberStyles.Any,
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                out var w))
+                            {
                                 weight = w;
+                            }
+
 
                             var edge = new Edge(from, to, weight);
                             graph.AddEdge(from, to, weight); // TODO: Нужно добавить вес в AddEdge
