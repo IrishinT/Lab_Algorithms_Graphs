@@ -20,6 +20,7 @@ namespace Lab_Algorithms_Graphs
             btnReachable.Click += btnReachable_Click;
             btnComponents.Click += btnComponents_Click;
             btnDijkstra.Click += btnDijkstra_Click;
+            btnAnalysis.Click += btnAnalysis_Click;
         }
 
         private void InitDistancesGrid()
@@ -230,6 +231,55 @@ namespace Lab_Algorithms_Graphs
                     rtbOutput.AppendText($"Маршрут: {string.Join(" → ", path)}\n");
                 }
             }
+        }
+
+        private void btnAnalysis_Click(object sender, EventArgs e)
+        {
+            if (_graph == null)
+            {
+                MessageBox.Show("Сначала загрузите граф!");
+                return;
+            }
+
+            rtbOutput.Clear();
+            rtbOutput.SelectionFont = new Font(rtbOutput.Font, FontStyle.Bold | FontStyle.Underline);
+            rtbOutput.AppendText("ОТЧЕТ ПО АНАЛИЗУ СЕТИ ПОСТАВОК\n\n");
+
+            // --- 1. Точки сочленения ---
+            var points = GraphAnalysis.FindArticulationPoints(_graph);
+            rtbOutput.SelectionFont = new Font(rtbOutput.Font, FontStyle.Bold);
+            rtbOutput.AppendText("1. КРИТИЧЕСКИЕ СКЛАДЫ:\n");
+            if (points.Count > 0)
+                rtbOutput.AppendText($"При выходе из строя этих узлов сеть разрывается: {string.Join(", ", points)}\n");
+            else
+                rtbOutput.AppendText("Критических складов не обнаружено. Сеть надежна.\n");
+            rtbOutput.AppendText("\n");
+
+            // --- 2. Минимальное остовное дерево (MST) ---
+            var mst = GraphAnalysis.GetMST(_graph);
+            rtbOutput.SelectionFont = new Font(rtbOutput.Font, FontStyle.Bold);
+            rtbOutput.AppendText("2. МИНИМАЛЬНАЯ ИНФРАСТРУКТУРА (MST):\n");
+            rtbOutput.AppendText($"Минимальный набор дорог для связи всех точек (сумма: {mst.Sum(x => x.Weight):F2}):\n");
+            foreach (var edge in mst.Take(10)) // выводим первые 10 для краткости
+                rtbOutput.AppendText($" • {edge.From} ↔ {edge.To} ({edge.Weight})\n");
+            rtbOutput.AppendText("\n");
+
+            // --- 3. Основная задача варианта №10 ---
+            var (hub, totalDist) = GraphAnalysis.FindDeliveryCenter(_graph);
+            rtbOutput.SelectionFont = new Font(rtbOutput.Font, FontStyle.Bold);
+            rtbOutput.AppendText("3. ОПТИМАЛЬНЫЙ МАРШРУТ ДОСТАВКИ:\n");
+            if (hub != null)
+            {
+                rtbOutput.AppendText($"Идеальная точка для центрального хаба: {hub}\n");
+                rtbOutput.AppendText($"Обеспечивает минимальный средний маршрут до всех магазинов.\n");
+                rtbOutput.AppendText($"Суммарная стоимость доставки по всей сети: {totalDist:F2}");
+            }
+            else
+            {
+                rtbOutput.AppendText("Невозможно найти центр (граф несвязный).");
+            }
+
+            rtbOutput.ScrollToCaret();
         }
 
     }

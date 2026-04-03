@@ -34,6 +34,7 @@
             btnReachable = new Button();
             btnComponents = new Button();
             btnDijkstra = new Button();
+            btnAnalysis = new Button();
             cmbTo = new ComboBox();
             lblTo = new Label();
             cmbFrom = new ComboBox();
@@ -84,14 +85,14 @@
             pnlControls.Dock = DockStyle.Left;
             pnlControls.Location = new Point(0, 0);
             pnlControls.Name = "pnlControls";
-            pnlControls.Size = new Size(338, 553);
+            pnlControls.Size = new Size(338, 653);
             pnlControls.TabIndex = 0;
             // 
             // lblStatus
             // 
             lblStatus.AutoSize = true;
             lblStatus.Dock = DockStyle.Bottom;
-            lblStatus.Location = new Point(0, 527);
+            lblStatus.Location = new Point(0, 627);
             lblStatus.Name = "lblStatus";
             lblStatus.Padding = new Padding(3);
             lblStatus.Size = new Size(147, 26);
@@ -103,10 +104,11 @@
             flowLayoutPanel2.Controls.Add(btnReachable);
             flowLayoutPanel2.Controls.Add(btnComponents);
             flowLayoutPanel2.Controls.Add(btnDijkstra);
+            flowLayoutPanel2.Controls.Add(btnAnalysis);
             flowLayoutPanel2.Dock = DockStyle.Top;
             flowLayoutPanel2.Location = new Point(0, 439);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(338, 71);
+            flowLayoutPanel2.Size = new Size(338, 173);
             flowLayoutPanel2.TabIndex = 12;
             // 
             // btnReachable
@@ -138,6 +140,16 @@
             btnDijkstra.TabIndex = 2;
             btnDijkstra.Text = "Дейкстра";
             btnDijkstra.UseVisualStyleBackColor = false;
+            // 
+            // btnAnalysis
+            // 
+            btnAnalysis.BackColor = Color.LightSkyBlue;
+            btnAnalysis.Location = new Point(3, 77);
+            btnAnalysis.Name = "btnAnalysis";
+            btnAnalysis.Size = new Size(94, 67);
+            btnAnalysis.TabIndex = 14;
+            btnAnalysis.Text = "Глубокий анализ";
+            btnAnalysis.UseVisualStyleBackColor = false;
             // 
             // cmbTo
             // 
@@ -311,7 +323,7 @@
             rtbOutput.Location = new Point(0, 0);
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = true;
-            rtbOutput.Size = new Size(444, 276);
+            rtbOutput.Size = new Size(544, 324);
             rtbOutput.TabIndex = 1;
             rtbOutput.Text = "";
             // 
@@ -329,8 +341,8 @@
             // splitContainerRight.Panel2
             // 
             splitContainerRight.Panel2.Controls.Add(dgvDistances);
-            splitContainerRight.Size = new Size(444, 553);
-            splitContainerRight.SplitterDistance = 276;
+            splitContainerRight.Size = new Size(544, 653);
+            splitContainerRight.SplitterDistance = 324;
             splitContainerRight.TabIndex = 0;
             // 
             // dgvDistances
@@ -344,14 +356,14 @@
             dgvDistances.Name = "dgvDistances";
             dgvDistances.ReadOnly = true;
             dgvDistances.RowHeadersWidth = 51;
-            dgvDistances.Size = new Size(444, 273);
+            dgvDistances.Size = new Size(544, 325);
             dgvDistances.TabIndex = 0;
             // 
             // GraphMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(782, 553);
+            ClientSize = new Size(882, 653);
             Controls.Add(splitContainerRight);
             Controls.Add(pnlControls);
             Name = "GraphMainForm";
@@ -396,5 +408,6 @@
         private Button btnDijkstra;
         private SplitContainer splitContainerRight;
         private DataGridView dgvDistances;
+        private Button btnAnalysis;
     }
 }
