@@ -54,6 +54,7 @@
             rtbOutput = new RichTextBox();
             splitContainerRight = new SplitContainer();
             dgvDistances = new DataGridView();
+            btnCompare = new Button();
             pnlControls.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -105,6 +106,7 @@
             flowLayoutPanel2.Controls.Add(btnComponents);
             flowLayoutPanel2.Controls.Add(btnDijkstra);
             flowLayoutPanel2.Controls.Add(btnAnalysis);
+            flowLayoutPanel2.Controls.Add(btnCompare);
             flowLayoutPanel2.Dock = DockStyle.Top;
             flowLayoutPanel2.Location = new Point(0, 439);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -359,6 +361,16 @@
             dgvDistances.Size = new Size(544, 325);
             dgvDistances.TabIndex = 0;
             // 
+            // btnCompare
+            // 
+            btnCompare.BackColor = Color.LightSkyBlue;
+            btnCompare.Location = new Point(103, 77);
+            btnCompare.Name = "btnCompare";
+            btnCompare.Size = new Size(168, 67);
+            btnCompare.TabIndex = 15;
+            btnCompare.Text = "Сравнение BFS и Дейкстры";
+            btnCompare.UseVisualStyleBackColor = false;
+            // 
             // GraphMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -409,5 +421,6 @@
         private SplitContainer splitContainerRight;
         private DataGridView dgvDistances;
         private Button btnAnalysis;
+        private Button btnCompare;
     }
 }
