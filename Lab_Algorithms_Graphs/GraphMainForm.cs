@@ -1,5 +1,6 @@
 ﻿using Lab_Algorithms_Graphs.Models;
 using Lab_Algorithms_Graphs.Service;
+using System.Diagnostics;
 using System.Net;
 
 namespace Lab_Algorithms_Graphs
@@ -100,13 +101,16 @@ namespace Lab_Algorithms_Graphs
                 return;
             }
 
+            var sw = Stopwatch.StartNew();
             var order = BFS_Algorithm.Traverse(_graph, start);
+            sw.Stop();
 
             rtbOutput.Clear();
             rtbOutput.AppendText($"[BFS] Обход от объекта: {start}\n");
             rtbOutput.AppendText($"Порядок посещения:\n");
             rtbOutput.AppendText(string.Join(" -> ", order) + "\n");
             rtbOutput.AppendText($"\nВсего вершин: {order.Count}\n");
+            rtbOutput.AppendText($"\nВремя выполнения: {sw.Elapsed.TotalMilliseconds:F4} мс\n");
             rtbOutput.ScrollToCaret();
         }
 
@@ -201,7 +205,9 @@ namespace Lab_Algorithms_Graphs
             }
 
             // Запуск алгоритма
+            var sw = Stopwatch.StartNew();
             var (distances, parents) = Dijkstra_Algorithm.Run(_graph, from);
+            sw.Stop();
 
             dgvDistances.Rows.Clear();
             if (dgvDistances.ColumnCount == 0) InitDistancesGrid();
@@ -231,6 +237,8 @@ namespace Lab_Algorithms_Graphs
                     rtbOutput.AppendText($"Маршрут: {string.Join(" → ", path)}\n");
                 }
             }
+
+            rtbOutput.AppendText($"\nВремя выполнения Дейкстры: {sw.Elapsed.TotalMilliseconds:F4} мс\n");
         }
 
         private void btnAnalysis_Click(object sender, EventArgs e)
