@@ -35,6 +35,7 @@
             btnComponents = new Button();
             btnDijkstra = new Button();
             btnAnalysis = new Button();
+            btnCompare = new Button();
             cmbTo = new ComboBox();
             lblTo = new Label();
             cmbFrom = new ComboBox();
@@ -54,7 +55,6 @@
             rtbOutput = new RichTextBox();
             splitContainerRight = new SplitContainer();
             dgvDistances = new DataGridView();
-            btnCompare = new Button();
             pnlControls.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -152,6 +152,16 @@
             btnAnalysis.TabIndex = 14;
             btnAnalysis.Text = "Глубокий анализ";
             btnAnalysis.UseVisualStyleBackColor = false;
+            // 
+            // btnCompare
+            // 
+            btnCompare.BackColor = Color.LightSkyBlue;
+            btnCompare.Location = new Point(103, 77);
+            btnCompare.Name = "btnCompare";
+            btnCompare.Size = new Size(168, 67);
+            btnCompare.TabIndex = 15;
+            btnCompare.Text = "Сравнение BFS и Дейкстры";
+            btnCompare.UseVisualStyleBackColor = false;
             // 
             // cmbTo
             // 
@@ -360,16 +370,6 @@
             dgvDistances.RowHeadersWidth = 51;
             dgvDistances.Size = new Size(544, 325);
             dgvDistances.TabIndex = 0;
-            // 
-            // btnCompare
-            // 
-            btnCompare.BackColor = Color.LightSkyBlue;
-            btnCompare.Location = new Point(103, 77);
-            btnCompare.Name = "btnCompare";
-            btnCompare.Size = new Size(168, 67);
-            btnCompare.TabIndex = 15;
-            btnCompare.Text = "Сравнение BFS и Дейкстры";
-            btnCompare.UseVisualStyleBackColor = false;
             // 
             // GraphMainForm
             // 
