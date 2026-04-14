@@ -1,3 +1,7 @@
+Вот обновленный вариант `README.md` с учетом всех твоих пожеланий. Текстовая структура заменена на картинку, добавлена подробная инструкция по запуску, а в технологиях указана актуальная для .NET 8 версия языка — **C# 12**.
+
+---
+
 # Сеть поставок товаров — Графовые алгоритмы
 
 **Лабораторные работы №4–6 по дисциплине «Алгоритмизация и программирование»**  
@@ -31,26 +35,34 @@
 
 ## 📁 Структура проекта
 
-```
-[Lab_Algorithms_Graphs.Models.Service/] # Библиотека алгоритмов
-    BFS_Algorithm.cs            # Обход в ширину и кратчайший путь (по ребрам)
-    DFS_Algorithm.cs            # Обход в глубину
-    Dijkstra_Algorithm.cs       # Алгоритм Дейкстры (кратчайший путь по весам) [NEW]
-    GraphAnalysis.cs            # Точки сочленения, MST и поиск Хаба [NEW]
-    Connectivity.cs             # Компоненты связности
-    GraphFileParser.cs          # Чтение/запись файлов (.txt)
+![Структура проекта](images/structure.png)
 
-[Lab_Algorithms_Graphs.Models/] # Библиотека моделей
-    Edge.cs                     # Ребро графа (маршрут с весом)
-    Graph.cs                    # Класс графа (список смежности с весами)
-    Vertex.cs                   # Вершина графа (склад/магазин)
+---
 
-[Lab_Algorithms_Graphs.Tests/]  # Юнит-тесты (xUnit)
-    BFSTests.cs, DFSTestscs.cs, ConnectivityTests.cs, DijkstraTests.cs, EdgeTests.cs...
+## 💻 Установка и запуск
 
-[Lab_Algorithms_Graphs/]        # Интерфейс приложения (WinForms)
-    GraphMainForm.cs
-```
+**Требования:**
+* [.NET 8.0 SDK](https://dotnet.microsoft.com/download)
+* Visual Studio 2022 (рекомендуется для работы с WinForms-интерфейсом)
+
+**Инструкция:**
+
+1. Склонируйте репозиторий на свой компьютер:
+   ```bash
+   git clone https://github.com/IrishinT/Lab_Algorithms_Graphs.git
+   ```
+2. Перейдите в директорию проекта:
+   ```bash
+   cd Lab_Algorithms_Graphs
+   ```
+3. **Через Visual Studio (Рекомендуется):**
+   * Откройте файл решения `.sln`.
+   * Убедитесь, что проект `Lab_Algorithms_Graphs` (приложение WinForms) назначен как запускаемый проект по умолчанию.
+   * Нажмите `F5` или кнопку **Пуск** на верхней панели.
+4. **Через командную строку (.NET CLI):**
+   ```bash
+   dotnet run --project Lab_Algorithms_Graphs/Lab_Algorithms_Graphs.csproj
+   ```
 
 ---
 
@@ -106,7 +118,7 @@ dotnet test Lab_Algorithms_Graphs.Tests
 ---
 
 ## 🛠 Технологии
-- **Язык:** C# / .NET 8.0
+- **Язык:** C# 12 / .NET 8.0
 - **UI:** WinForms + SplitContainer + DataGridView
 - **Тесты:** xUnit
 - **IDE:** Visual Studio 2022
