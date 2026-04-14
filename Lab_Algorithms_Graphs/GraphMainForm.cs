@@ -102,18 +102,30 @@ namespace Lab_Algorithms_Graphs
                 return;
             }
 
+            // Создаем сборщик строк для лога
+            var logBuilder = new System.Text.StringBuilder();
+
             var sw = Stopwatch.StartNew();
-            var order = BFS_Algorithm.Traverse(_graph, start);
+            // Передаем лямбда-выражение, которое записывает сообщения от алгоритма в logBuilder
+            var order = BFS_Algorithm.Traverse(_graph, start, msg => logBuilder.AppendLine(msg));
             sw.Stop();
 
             rtbOutput.Clear();
-            rtbOutput.AppendText($"[BFS] Обход от объекта: {start}\n");
-            rtbOutput.AppendText($"Порядок посещения:\n");
+            rtbOutput.SelectionFont = new Font(rtbOutput.Font, FontStyle.Bold);
+            rtbOutput.AppendText($"[BFS] ВИЗУАЛИЗАЦИЯ ОБХОДА В ШИРИНУ ОТ: {start}\n\n");
+            rtbOutput.SelectionFont = new Font(rtbOutput.Font, FontStyle.Regular);
+
+            // Вывод пошагового объяснения
+            rtbOutput.AppendText(logBuilder.ToString());
+
+            rtbOutput.AppendText("=======================================\n");
+            rtbOutput.AppendText($"Итоговый порядок посещения:\n");
             rtbOutput.AppendText(string.Join(" -> ", order) + "\n");
             rtbOutput.AppendText($"\nВсего вершин: {order.Count}\n");
             rtbOutput.AppendText($"\nВремя выполнения: {sw.Elapsed.TotalMilliseconds:F4} мс\n");
             rtbOutput.ScrollToCaret();
         }
+
 
         private void btnDFS_Click(object? sender, EventArgs e)
         {
@@ -123,13 +135,24 @@ namespace Lab_Algorithms_Graphs
                 return;
             }
 
+            // Создаем сборщик строк для лога
+            var logBuilder = new System.Text.StringBuilder();
+
             var sw = Stopwatch.StartNew();
-            var order = DFS_Algorithm.Traverse(_graph, start);
+            // Передаем лямбда-выражение, которое записывает сообщения от алгоритма в logBuilder
+            var order = DFS_Algorithm.Traverse(_graph, start, msg => logBuilder.AppendLine(msg));
             sw.Stop();
 
             rtbOutput.Clear();
-            rtbOutput.AppendText($"[DFS] Обход от объекта: {start}\n");
-            rtbOutput.AppendText($"Порядок посещения:\n");
+            rtbOutput.SelectionFont = new Font(rtbOutput.Font, FontStyle.Bold);
+            rtbOutput.AppendText($"[DFS] ВИЗУАЛИЗАЦИЯ ОБХОДА В ГЛУБИНУ ОТ: {start}\n\n");
+            rtbOutput.SelectionFont = new Font(rtbOutput.Font, FontStyle.Regular);
+
+            // Вывод пошагового объяснения
+            rtbOutput.AppendText(logBuilder.ToString());
+
+            rtbOutput.AppendText("=======================================\n");
+            rtbOutput.AppendText($"Итоговый порядок посещения:\n");
             rtbOutput.AppendText(string.Join(" -> ", order) + "\n");
             rtbOutput.AppendText($"\nВсего вершин: {order.Count}\n");
             rtbOutput.AppendText($"\nВремя выполнения алгоритма DFS: {sw.Elapsed.TotalMilliseconds:F4} мс\n");

@@ -30,37 +30,52 @@ namespace Lab_Algorithms_Graphs.Service
         /// <exception cref="ArgumentNullException">
         /// Если graph или start равны null.
         /// </exception>
-        public static List<Vertex> Traverse(Graph graph, Vertex start)
+        public static List<Vertex> Traverse(Graph graph, Vertex start, Action<string>? logger = null)
         {
-            var result = new List<Vertex>(); // Результат: список вершин в порядке обхода
-            var visited = new HashSet<Vertex>(); // Множество посещённых вершин — чтобы не ходить по кругу
-            var queue = new Queue<Vertex>(); // Очередь для хранения вершин, которые нужно обработать
+            var result = new List<Vertex>();
+            var visited = new HashSet<Vertex>();
+            var queue = new Queue<Vertex>();
 
-            // Начинаем со стартовой вершины
             visited.Add(start);
             queue.Enqueue(start);
 
-            // Основной цикл: пока есть вершины для обработки
+            // ЛОГИРОВАНИЕ НАЧАЛА
+            logger?.Invoke($"[Начало BFS] Помещаем стартовую вершину '{start}' в очередь и отмечаем как посещенную.\n");
+
+            int step = 1;
+
             while (queue.Count > 0)
             {
-                // Извлекаем вершину из начала очереди (FIFO)
                 var current = queue.Dequeue();
-
-                // Добавляем в результат — вершина посещена
                 result.Add(current);
 
-                // Перебираем всех соседей текущей вершины
+                // ЛОГИРОВАНИЕ ШАГА
+                logger?.Invoke($"--- Шаг {step++} ---");
+                logger?.Invoke($"Извлекли из очереди: {current}");
+
+                var addedNeighbors = new List<string>();
+
                 foreach (var neighbor in graph.GetNeighbors(current))
                 {
-                    // Если сосед ещё не посещён — добавляем в очередь
                     if (!visited.Contains(neighbor))
                     {
-                        visited.Add(neighbor); // Помечаем как посещённый
-                        queue.Enqueue(neighbor); // Добавляем в очередь
+                        visited.Add(neighbor);
+                        queue.Enqueue(neighbor);
+                        addedNeighbors.Add(neighbor.ToString()); // Для лога
                     }
                 }
+
+                // ЛОГИРОВАНИЕ СОСТОЯНИЯ
+                if (addedNeighbors.Count > 0)
+                    logger?.Invoke($"Нашли новых соседей: {string.Join(", ", addedNeighbors)}. Добавляем их в очередь.");
+                else
+                    logger?.Invoke($"Непосещенных соседей нет.");
+
+                logger?.Invoke($"Состояние очереди: [{(queue.Count > 0 ? string.Join(", ", queue) : "пусто")}]");
+                logger?.Invoke($"Посещенные вершины: {string.Join(", ", result)}\n");
             }
 
+            logger?.Invoke("Очередь пуста. Обход завершен!\n");
             return result;
         }
 

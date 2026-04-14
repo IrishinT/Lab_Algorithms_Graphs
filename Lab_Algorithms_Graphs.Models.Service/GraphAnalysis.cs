@@ -10,7 +10,7 @@ namespace Lab_Algorithms_Graphs.Service
         private static Dictionary<Vertex, int> _low; // Минимальное время захода в поддерево
         private static HashSet<Vertex> _articulationPoints;
 
-        // --- ЗАДАЧА 1: Поиск точек сочленения ---
+        // Поиск точек сочленения
         public static List<Vertex> FindArticulationPoints(Graph graph)
         {
             _timer = 0;
@@ -51,7 +51,7 @@ namespace Lab_Algorithms_Graphs.Service
                 _articulationPoints.Add(v);
         }
 
-        // --- ЗАДАЧА 2: Минимальное остовное дерево (Алгоритм Прима) ---
+        // Минимальное остовное дерево (Алгоритм Прима)
         public static List<Edge> GetMST(Graph graph)
         {
             var resultEdges = new List<Edge>();
@@ -85,7 +85,6 @@ namespace Lab_Algorithms_Graphs.Service
             return resultEdges;
         }
 
-        // --- ЗАДАЧА 3 (Вариант 10): Оптимальный логистический хаб ---
         // Ищем вершину, сумма кратчайших путей от которой до всех остальных минимальна
         public static (Vertex? Hub, double TotalDistance) FindDeliveryCenter(Graph graph)
         {
@@ -94,7 +93,7 @@ namespace Lab_Algorithms_Graphs.Service
 
             foreach (var candidate in graph.Vertices)
             {
-                // Используем уже готовый алгоритм Дейкстры из ЛР №5
+                // Используем уже готовый алгоритм Дейкстры
                 var (distances, _) = Dijkstra_Algorithm.Run(graph, candidate);
 
                 double currentSum = 0;

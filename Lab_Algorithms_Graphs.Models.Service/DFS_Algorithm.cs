@@ -35,36 +35,61 @@ namespace Lab_Algorithms_Graphs.Service
         /// Соседи добавляются в стек в обратном порядке для более 
         /// "естественного" порядка обхода (аналогично рекурсии).
         /// </remarks>
-        public static List<Vertex> Traverse(Graph graph, Vertex start)
+        // ДОБАВЛЕН ПАРАМЕТР: Action<string>? logger = null
+        public static List<Vertex> Traverse(Graph graph, Vertex start, Action<string>? logger = null)
         {
             var result = new List<Vertex>();
             var visited = new HashSet<Vertex>();
-
-            // Стек для хранения вершин (LIFO — последним пришёл, первым ушёл)
             var stack = new Stack<Vertex>();
 
             stack.Push(start);
 
+            // ЛОГИРОВАНИЕ НАЧАЛА
+            logger?.Invoke($"[Начало DFS] Помещаем стартовую вершину '{start}' в стек.\n");
+
+            int step = 1;
+
             while (stack.Count > 0)
             {
-                // Извлекаем вершину из вершины стека
                 var current = stack.Pop();
 
-                // Если уже посещали — пропускаем (может быть дубль в стеке)
-                if (visited.Contains(current)) continue;
+                // ЛОГИРОВАНИЕ ШАГА
+                logger?.Invoke($"--- Шаг {step++} ---");
+                logger?.Invoke($"Извлекли из стека: {current}");
+
+                if (visited.Contains(current))
+                {
+                    logger?.Invoke($"Вершина '{current}' уже была посещена ранее. Пропускаем.\n");
+                    continue;
+                }
 
                 visited.Add(current);
                 result.Add(current);
 
-                // Добавляем соседей в обратном порядке для "естественного" обхода
-                // Reverse() нужен, чтобы первый сосед был обработан первым
+                logger?.Invoke($"Отмечаем '{current}' как посещенную.");
+
+                var addedNeighbors = new List<string>();
+
                 foreach (var neighbor in graph.GetNeighbors(current).Reverse())
                 {
                     if (!visited.Contains(neighbor))
+                    {
                         stack.Push(neighbor);
+                        addedNeighbors.Add(neighbor.ToString()); // Для лога
+                    }
                 }
+
+                // ЛОГИРОВАНИЕ СОСТОЯНИЯ
+                if (addedNeighbors.Count > 0)
+                    logger?.Invoke($"Помещаем в стек непосещенных соседей: {string.Join(", ", addedNeighbors)}");
+                else
+                    logger?.Invoke($"Непосещенных соседей для добавления в стек нет.");
+
+                logger?.Invoke($"Состояние стека (вершина слева): [{(stack.Count > 0 ? string.Join(", ", stack) : "пусто")}]");
+                logger?.Invoke($"Посещенные вершины: {string.Join(", ", result)}\n");
             }
 
+            logger?.Invoke("Стек пуст. Обход завершен!\n");
             return result;
         }
 
