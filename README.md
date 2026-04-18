@@ -114,7 +114,7 @@ dotnet test Lab_Algorithms_Graphs.Tests
 ---
 
 ## 🛠 Технологии
-- **Язык:** C# 12 / .NET 8.0
+- **Язык:** C# 6.0+ / .NET 8.0
 - **UI:** WinForms + SplitContainer + DataGridView
 - **Тесты:** xUnit
 - **IDE:** Visual Studio 2022
